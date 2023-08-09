@@ -1,21 +1,30 @@
-import './App.css';
-import { Accordion } from './Accordion/Accordion';
 import { useState } from 'react';
-import Tabs from './Tabs/Tabs';
-import TabInfoOne from './Tabs/TabInfoOne';
-import TabInfoThree from './Tabs/TabInfoThree';
-import TabInfoTwo from './Tabs/TabInfoTwo';
+import './App.css';
+import Modal from './Modal/Modal';
+import Content from './Modal/Content';
 
 function App() {
 
-  const [activeTab, setActiveTab] = useState(0)
+  // const [activeTab, setActiveTab] = useState(0)
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="App">
+    <div>
       {/* <Accordion/> */}
-      <Tabs setActiveTab={setActiveTab}/>
+
+      {/* <Tabs setActiveTab={setActiveTab}/>
       { activeTab === 0 && <TabInfoOne/> }
       { activeTab === 1 && <TabInfoTwo/> }
-      { activeTab === 2 && <TabInfoThree/> }
+      { activeTab === 2 && <TabInfoThree/> } */}
+
+      <button onClick={() => setIsOpen(true)}>Open</button>
+
+      {isOpen && 
+      <Modal setIsOpen={setIsOpen}>
+      <Content setIsOpen={setIsOpen}/>
+      </Modal>
+      }
     </div>
   );
 }
