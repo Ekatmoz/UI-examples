@@ -1,19 +1,28 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-import LoaderPage from './Loader/LoaderPage';
+import { useTranslation } from 'react-i18next';
 
 function App() {
-
+  //TAB
   // const [activeTab, setActiveTab] = useState(0)
+
+  //Modal
   //const [isOpen, setIsOpen] = useState(false);
 
-  const [stateloader, setStateLoader] = useState(true);
+  //LOADER
+  //const [stateloader, setStateLoader] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setStateLoader(false), 3000);
-    return () => clearTimeout(timer)
-  }, [])
-   
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setStateLoader(false), 3000);
+  //   return () => clearTimeout(timer)
+  // }, [])
+
+  //Translation i18n
+  const {i18n, t} = useTranslation();
+
+  const toggleLang = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'hu' : 'en')
+  }
+
   return (
     <div>
       {/* <Accordion/> */}
@@ -31,9 +40,13 @@ function App() {
       <Content setIsOpen={setIsOpen}/>
       </Modal>
       } */}
-
-      { stateloader && <LoaderPage/> }
-
+      
+      {/* Loader
+      { stateloader && <LoaderPage/> } */}
+      <h1>{t('Welcome to React')}</h1>
+      <button onClick={toggleLang}>
+        {i18n.language === 'en' ? 'HU' : 'EN'}
+      </button>
     </div>
   );
 }
